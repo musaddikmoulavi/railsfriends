@@ -1,0 +1,51 @@
+<!-- <p id="notice"><%= notice %></p>
+ -->
+<!-- <h1>Friend List</h1> -->
+<% if user_signed_in? %>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Instagram</th>
+          <th>User Id</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @friends1s.each do |friends1| %>
+          <tr>
+            <td><%= friends1.first_name %></td>
+            <td><%= friends1.last_name %></td>
+            <td><%= friends1.email %></td>
+            <td><%= friends1.phone %></td>
+            <td><%= friends1.instagram %></td>
+            <td><%= friends1.user_id %></td>
+            <td><%= link_to 'Show', friends1, class:"btn btn-outline-secondary btn-sm" %></td>
+
+            <% if friends1.user == current_user %>
+              <td><%= link_to 'Edit', edit_friends1_path(friends1), class:"btn btn-outline-primary btn-sm" %></td>
+              <td><%= link_to 'Delete', friends1, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %></td>
+
+            <% else %>
+            <td></td>
+            <td></td>
+            <% end%>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <br>
+
+
+  <%= link_to 'New Friend', new_friends1_path, class:"btn btn-secondary" %>
+
+
+<% else %>
+  <h1>Hello Peeps!!!</h1>
+<h2>Kindly Log In to our website to add your friends</h2>
+<% end %>
